@@ -1,0 +1,134 @@
+import struct
+
+
+class Version:
+    _struct = struct.Struct('>LH')
+    size = _struct.size
+
+    def __init__(self):
+        self._version = None
+        self._subbuild = None
+
+    def set_version(self, value: int) -> None: self._version = value
+    def set_subbuild(self, value: int) -> None: self._subbuild = value
+
+    def get_version(self) -> int: return self._version
+    def get_subbuild(self) -> int: return self._subbuild
+
+    @classmethod
+    def unpack(cls, data):
+        res = cls()
+        version, subbuild = cls._struct.unpack(data)
+        res.set_version(version)
+        res.set_subbuild(subbuild)
+        return res
+    @classmethod
+    def read(cls, src):
+        cls.unpack(src.read(cls._struct.size))
+
+
+class Prelogin:
+  _offset_len = struct.Struct(">HH")
+  _tag_offset_len = struct.Struct(">BHH")
+  _fencryption_struct = struct.Struct('@B')
+  _thread_id_struct = struct.Struct('>L')
+  _mars_struct = struct.Struct('@B')
+
+  def __init__(self, version=None, fencryption=None, instance=None, thread_id=None, mars=None):
+    self._version = version
+    self._fencryption = fencryption
+    self._instance = instance
+    self._thread_id = thread_id
+    self._mars = mars
+
+  def _unpack_version(self, buf): self._version = Version.unpack(buf)
+  def _unpack_fencryption(self, buf): self._fencryption = self._fencryption_struct.unpack(buf)[0]
+  def _unpack_instance(self, buf): self._instance = buf.decode('ascii')
+  def _unpack_thread_id(self, buf): self._thread_id = self._thread_id_struct.unpack(buf)[0]
+  def _unpack_mars(self, buf): self._mars = self._mars_struct.unpack(buf)[0]
+
+  _unpackers = {
+    0: _unpack_version,
+    1: _unpack_fencryption,
+    2: _unpack_instance,
+    3: _unpack_thread_id,
+    4: _unpack_mars,
+  }
+
+  @classmethod
+  def unpack(cls, buf):
+    res = cls()
+    pos: int = 0
+    while True:
+      tag = buf[pos]
+      pos += 1
+      if tag == 255:
+        break
+      else:
+        offset, size = cls._offset_len.unpack_from(buf, pos)
+        pos += cls._offset_len.size
+        cls._unpackers[tag](res, buf[offset:offset + size])
+    return res
+
+  def _hdr_size(self) -> int:
+    hdr_sz: int = 0
+    if self._version is not None:
+      hdr_sz += self._tag_offset_len.size
+    if self._fencryption is not None:
+      hdr_sz += self._tag_offset_len.size
+    if self._instance is not None:
+      hdr_sz += self._tag_offset_len.size
+    if self._thread_id is not None:
+      hdr_sz += self._tag_offset_len.size
+    if self._mars is not None:
+      hdr_sz += self._tag_offset_len.size
+    hdr_sz += 1  # space for terminator
+    return hdr_sz
+
+  def _size(self) -> (int, int):
+    hdr_sz: int = 0
+    data_sz: int = 0
+    if self._version is not None:
+      hdr_sz += self._offset_len.size
+      data_sz += Version.size
+    if self._fencryption is not None:
+      hdr_sz += self._offset_len.size
+      data_sz += self._fencryption_struct.size
+    if self._instance is not None:
+      hdr_sz += self._offset_len.size
+      data_sz += len(self._instance.encode("ascii"))
+    if self._thread_id is not None:
+      hdr_sz += self._offset_len.size
+      data_sz += self._thread_id_struct.size
+    if self._mars is not None:
+      hdr_sz += self._offset_len.size
+      data_sz += self._mars_struct.size
+    hdr_sz += 1  # space for terminator
+    return (hdr_sz, data_sz)
+
+  def pack_into(self, buf):
+    hdr_pos = 0
+    hdr_sz = self._hdr_size()
+    data_pos = hdr_sz
+    if self._version is not None:
+       data_buf = self._version.pack()
+       self._tag_offset_len.pack_into(buf, 0, hdr_pos, data_pos, len(data_buf)); hdr_pos += self._tag_offset_len.size
+       buf[data_pos:len(data_buf)] = data_buf[:]; data_pos += len(data_buf)
+    if self._fencryption is not None:
+       data_buf = self._fencryption_struct.pack(self._fencryption)
+       self._tag_offset_len.pack_into(buf, 1, hdr_pos, data_pos, len(data_buf)); hdr_pos += self._tag_offset_len.size
+       buf[data_pos:len(data_buf)] = data_buf[:]; data_pos += len(data_buf)
+    if self._instance is not None:
+       data_buf = self._instance.encode("ascii")
+       self._tag_offset_len.pack_into(buf, 2, hdr_pos, data_pos, len(data_buf)); hdr_pos += self._tag_offset_len.size
+       buf[data_pos:len(data_buf)] = data_buf[:]; data_pos += len(data_buf)
+    if self._thread_id is not None:
+       data_buf = self._thread_id_struct.pack(self._thread_id)
+       self._tag_offset_len.pack_into(buf, 3, hdr_pos, data_pos, len(data_buf)); hdr_pos += self._tag_offset_len.size
+       buf[data_pos:len(data_buf)] = data_buf[:]; data_pos += len(data_buf)
+    if self._mars is not None:
+       data_buf = self._mars_struct.pack(self._mars)
+       self._tag_offset_len.pack_into(buf, 4, hdr_pos, data_pos, len(data_buf)); hdr_pos += self._tag_offset_len.size
+       buf[data_pos:len(data_buf)] = data_buf[:]; data_pos += len(data_buf)
+    buf[hdr_pos] = 255; hdr_pos += 1
+    return data_pos

@@ -1,0 +1,141 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #FFFFEE;
+	font-size: 12px;
+	overflow: auto;
+}
+
+#mainDiv{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+#content{
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: space-between;
+	align-items: center;
+	/*align-content: center;*/
+
+}
+#loveHeart {
+	position: relative;
+	display: flex;
+	float: right;
+	margin-top: 0%;
+	margin-left: 0%;
+	width:100%;
+	height:100%;
+	/*width:100%;*/
+	/*height:100%;*/
+}
+
+#garden {
+	width: 100%;
+	height: 100%;
+}
+
+#elapseClock {
+	text-align: right;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#words {
+	font-family: "sans-serif";
+	width: 500px;
+	height: 0px;
+	font-size: 24px;
+	color:#666;
+}
+
+#messages{
+	margin-left: 50px;
+	display: none;
+}
+
+#elapseClock .digit{
+	font-family: "digit";
+	font-size: 36px;
+}
+
+#loveu{
+	padding: 0px;
+	font-size: 22px;
+	margin-top: 30px;
+	margin-right: 100px;
+	text-align: right;
+	display: none;
+}
+
+#loveu .signature{
+	margin-top: 5px;
+	font-size: 20px;
+	font-style: italic;
+}
+
+#clickSound{
+	display:none;
+}
+
+#code {
+	float: left;
+	margin-left: 5%;
+	width: 430px;
+	height: 480px;
+	color: #d1d1d1;
+	font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
+	font-size: 15px;
+	line-height: 1.2;
+	background-color: rgba(255,255,255,.3);
+	border-radius: 5px;
+
+}
+
+#code .string{
+	color: #2a36ff;
+}
+
+#code .keyword{
+	color: #7f0055;
+	font-weight:bold;
+}
+
+#code .placeholder{
+	margin-left:15px;
+}
+
+#code .space{
+	margin-left: 24px;
+}
+
+#code .comments{
+	display: flex;
+	margin-top: 10px;
+	color: #FF0000;
+}
+
+#copyright{
+	margin-top: 10px;
+	text-align: center;
+	width:100%;
+	color:#666;
+}
+
+#errorMsg{
+	width: 100%;
+	text-align: center;
+	font-size: 24px;
+	position: absolute;
+	top: 100px;
+	left:0px;
+}
+
+#copyright a{
+	color:#666;
+}

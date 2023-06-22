@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        text-align: center; margin: 0; padding: 0;
+    }
+    #fartherdiv {
+        margin: 0 auto;
+        display: flex;
+        border: 1px solid #F00;
+        justify-content: space-around;
+        align-items: center;
+        height: 500px;
+        width: 500px;
+
+
+    }
+    #fartherdiv div {
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items: center;
+        height: 200px;
+        width: 200px;
+        border: 1px solid #000000;
+
+
+    }
+    #fartherdiv div p {
+        display: flex;
+        align-items: center;
+        border: 1px solid #F37B1D;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        overflow: hidden;
+        margin: 0;
+
+    }
+</style>
+
+<body>
+<div id="fartherdiv">
+    <div id="child1"><p>child1</p><p>child1test</p></div>
+    <div id="child2"><p>child2</p></div>
+</div>
+
+
+</body>
+</html>

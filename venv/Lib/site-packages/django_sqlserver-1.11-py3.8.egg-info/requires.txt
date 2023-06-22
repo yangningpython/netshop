@@ -1,0 +1,2 @@
+python-tds
+django-mssql>=1.7

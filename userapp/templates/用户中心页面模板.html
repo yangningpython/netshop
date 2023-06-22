@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://127.0.0.1:8000/user/usercenter/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>首页</title>
+    <link rel="stylesheet" href="./首页_files/login.css">
+    <link rel="stylesheet" href="./首页_files/index.css">
+    <link rel="stylesheet" href="./首页_files/detail.css">
+    <link rel="stylesheet" href="./首页_files/carts.css">
+    <link rel="stylesheet" href="./首页_files/reset.css">
+    <link rel="stylesheet" href="./首页_files/mygxin.css">
+    <script src="./首页_files/jquery.min.js.下载"></script>
+    <script src="./首页_files/carts.js.下载"></script>
+
+    
+    
+
+</head>
+<body>
+
+<div class="head">
+    <div class="head-in">
+        <ul class="options">
+            <li class="sub"><a href="http://127.0.0.1:8000/?category=2#">我的订单</a></li>
+            
+            <li class="sub"><a href="http://127.0.0.1:8000/?category=2#">客户服务</a></li>
+            <li class="sub"><a href="http://127.0.0.1:8000/cart/cart.html">我的购物车</a></li>
+        </ul>
+
+        
+            <div class="register">欢迎<a href="http://127.0.0.1:8000/user/usercenter/">youtube@163.com</a></div>
+        
+
+
+
+
+    </div>
+</div>
+<div class="search">
+    <ul class="items">
+        <li class="item">
+            <a href="http://127.0.0.1:8000/?category=2#">
+                <img src="./首页_files/1_09.png">
+                <p>10:00开抢</p>
+            </a>
+        </li>
+        <li class="item">
+            <a href="http://127.0.0.1:8000/?category=2#">
+                <img src="./首页_files/1_11.png">
+                <p>买手砍价</p>
+            </a>
+        </li>
+        <li class="item">
+            <a href="http://127.0.0.1:8000/?category=2#">
+                <img src="./首页_files/1_13.png">
+                <p>验货质检</p>
+            </a>
+        </li>
+    </ul>
+    <div class="input">
+        <input type="" name="" value="请输入想找的宝贝">
+        <img src="./首页_files/1_06.png">
+    </div>
+</div>
+
+    
+    <input type="hidden" name="csrfmiddlewaretoken" value="SSm6OhZlgtgLmmLi07RWmPYijzLpebaCh0pFbf57zYddklUSB4EBEks157EvG81b">
+    <div class="Bott">
+			<div class="wrapper clearfix" style="margin: 0 auto">
+				<div class="zuo fl" style="margin-left: 100px">
+					<h3>
+						<a href="http://127.0.0.1:8000/"><img src="./首页_files/tx.png"></a>
+						<p class="clearfix"><span class="fl">[youtube@163.com]</span><span class="fr logout">[退出登录]</span></p>
+					</h3>
+					<div>
+						<ul>
+							<li><a href="http://127.0.0.1:8000/user/usercenter/#">我的订单</a></li>
+						</ul>
+						<ul>
+							<li><a href="http://127.0.0.1:8000/user/address/">地址管理</a></li>
+						</ul>
+                        <ul>
+							<li><a href="http://127.0.0.1:8000/">回到首页</a></li>
+						</ul>
+
+					</div>
+				</div>
+				<div class="you fl">
+
+    <div class="tx clearfix">
+						<div class="fl clearfix">
+							<a href="http://127.0.0.1:8000/user/usercenter/#" class="fl"><img src="./首页_files/tx.png"></a>
+							<p class="fl"><span>六六六</span><a href="http://127.0.0.1:8000/user/usercenter/#">修改个人信息&gt;</a></p>
+						</div>
+						<div class="fr">绑定邮箱：12****4@**.com</div>
+					</div>
+    <div class="bott">
+						<div class="clearfix">
+							<a href="http://127.0.0.1:8000/user/usercenter/#" class="fl"><img src="./首页_files/gxin1.jpg"></a>
+							<p class="fl"><span>待支付的订单：<strong>0</strong></span>
+								<a href="http://127.0.0.1:8000/user/usercenter/#">查看待支付订单&gt;</a>
+							</p>
+						</div>
+						<div class="clearfix">
+							<a href="http://127.0.0.1:8000/user/usercenter/#" class="fl"><img src="./首页_files/gxin2.jpg"></a>
+							<p class="fl"><span>待收货的订单：<strong>0</strong></span>
+								<a href="http://127.0.0.1:8000/user/usercenter/#">查看待收货订单&gt;</a>
+							</p>
+						</div>
+					</div>
+
+				</div>
+
+            </div>
+            </div>
+
+
+
+
+    
+    <script>
+    $('.logout').click(function () {
+
+        $.ajax({
+            type:'post',
+            url:'/user/logout/',
+            data:'csrfmiddlewaretoken='+$('input[name="csrfmiddlewaretoken"]').val(),
+            success:function(data){
+                window.location='/user/login/'
+            }
+        })
+    })
+    </script>
+
+
+
+</body></html>

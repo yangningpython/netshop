@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+django_sqlserver.egg-info/PKG-INFO
+django_sqlserver.egg-info/SOURCES.txt
+django_sqlserver.egg-info/dependency_links.txt
+django_sqlserver.egg-info/requires.txt
+django_sqlserver.egg-info/top_level.txt
+django_sqlserver.egg-info/zip-safe
+sqlserver/__init__.py
+sqlserver/base.py
+sqlserver/compiler.py
+sqlserver/creation.py
+sqlserver/operations.py

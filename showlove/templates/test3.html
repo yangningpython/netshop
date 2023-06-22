@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+ .typewriter,
+.typewriter > span {
+  display: inline-block;
+}
+
+.typewriter > span {
+  position: relative;
+  overflow: hidden;
+  padding-right: 4px;
+}
+
+.typewriter > span::before {
+  content: '';
+  position: absolute;
+  border-left: .15em solid #00aeff;
+  background: white;
+  height: 1.1em;
+  right: -5px;
+  width: 100%;
+  animation: blink-caret .75s step-end infinite, typing 2s steps(30, end) forwards;
+}
+
+.typewriter > span:nth-of-type(2)::before {
+  animation-delay: 2s;
+}
+
+.typewriter > span:last-of-type::before {
+  right: 0;
+}
+
+
+
+/* The typing effect*/
+
+@keyframes typing {
+  from {
+    width: 100%
+  }
+  to {
+    width: 0
+  }
+}
+
+
+/*The typewriter cursor effect */
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: #00aeff
+  }
+  50% {
+    border-color: transparent
+  }
+}
+    </style>
+</head>
+<body>
+
+<p class="typewriter">
+  <span>A well defined plan will identify problems,</span><br>
+  <span> address challenges, and help restore confidence.</span>
+</p>
+
+</body>
+</html>

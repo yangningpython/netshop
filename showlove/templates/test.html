@@ -1,0 +1,28 @@
+   <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <audio id="bgMusic" controls autoplay loop
+        src="music/要不要买菜%20-%20下山.mp3" ></audio>
+</body>
+<script>
+    $(document).ready(function(){
+    var promise = document.querySelector('#bgMusic').play();
+    if (promise !== undefined) {
+        promise.then(_ => {
+            //promise.play()
+            //Autoplay started! 这种情况可以自动播放（非谷歌的其他浏览器：edge、360）
+        }).catch(error => {
+            //  Autoplay was prevented.谷歌和火狐就会阻止播放，可以显示一个PLAY按钮提示用户点击后进行播放
+        });
+    }})
+</script>
+
+</html>
