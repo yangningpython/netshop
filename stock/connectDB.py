@@ -5,7 +5,7 @@ from django.db import connection
 class ConnectDB():
     # def __init__(self):
     #     import redis
-    #     self.pool = redis.ConnectionPool(host='118.31.114.138', port=6379)
+    #     self.pool = redis.ConnectionPool(host='127.0.0.1', port=6379)
     #     self.r = redis.Redis(connection_pool=self.pool)
     #     self.pipe = self.r.pipeline(transaction=True)
     #
@@ -28,7 +28,7 @@ class ConnectDB():
 
     def connectmysql(self):
         #118.31.114.138
-        conn = pymysql.connect(host='118.31.114.138', port=3306, user='root', password='yN@5200732', \
+        conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', password='', \
                                database='stock', charset="utf8")
         cur=conn.cursor()
         return (conn,cur)

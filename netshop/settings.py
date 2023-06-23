@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'netshop.wsgi.application'
 #         'ENGINE': 'sql_server.pyodbc',
 #         'NAME': 'netshop',
 #         'USER': 'sa',
-#         'PASSWORD': 'yn5200732',
+#         'PASSWORD': '',
 #         'HOST': '127.0.0.1',
 #         'PORT': '1433',
 #         'OPTIONS':{
@@ -102,10 +102,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'netshop',
-        'HOST':'118.31.114.138',
+        'HOST':'127.0.0.1',
         'PORT':3306,
         'USER':'root',
-        'PASSWORD':'yN@5200732',
+        'PASSWORD':'',
         'OPTIONS':{
                     'init_command':"SET sql_mode='STRICT_TRANS_TABLES'",
                     'charset':'utf8'
