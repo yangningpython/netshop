@@ -9,7 +9,7 @@ class Category(models.Model):
     cname=models.CharField(max_length=10)
 
     def __str__(self):
-        return 'Category:%'%self.cname
+        return "cname:%s"%self.cname
 
 class Goods(models.Model):
     gname=models.CharField(max_length=100)
@@ -20,7 +20,7 @@ class Goods(models.Model):
 
     def __str__(self):
         # inventory_set属于类名加_set,一个属性，存当前类下对应所有库存，应该是通过good的作为inventory对象，外键获得
-        return 'Goods:%s'%(self.inventory_set)
+        return 'Goods:%s'%(self.inventory_set.first().color.colorurl)
     # 获取商品大图
     def getGimg(self):
         return self.inventory_set.first().color.colorurl
@@ -68,6 +68,9 @@ class GoodsDetail(models.Model):
 
     def name(self):
         return self.gdname.gdname
+
+    def __str__(self):
+        return self.gdurl
 
 class Size(models.Model):
     sname=models.CharField(max_length=100)
